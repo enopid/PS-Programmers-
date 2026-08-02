@@ -5,7 +5,6 @@
 
 using namespace std;
 
-// 전역 변수를 정의할 경우 함수 내에 초기화 코드를 꼭 작성해주세요.
 int solution(int n, vector<vector<int>> data) {
     int answer = 0;
     sort(data.begin(), data.end(), [&](const vector<int>& i, const vector<int>& j){return i[0]<j[0];});
@@ -13,6 +12,7 @@ int solution(int n, vector<vector<int>> data) {
     int iID;
     int iPrevValue;
     
+    //좌표압축
     iID = 0;
     iPrevValue = data[0][0];
     for(auto& _data : data){
@@ -31,6 +31,7 @@ int solution(int n, vector<vector<int>> data) {
     }
     M = iID+1;
     
+    //누적합
     vector<vector<int>> vecTable(N, vector<int>(M,0));
     for(auto& _data : data)
         vecTable[_data[0]][_data[1]]=1;
