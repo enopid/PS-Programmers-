@@ -7,11 +7,9 @@ using namespace std;
 vector<int> solution(int e, vector<int> starts) {
     vector<int> answer;
     vector<long long> vecNum(e+1, 0);
-    for(int i=1; i<=e; i++){
-        for(int j=1; i*j<=e; j++){
-            vecNum[i*j]++;
-        }
-    }
+    for(int i=1; i<=e; i++) for(int j=1; i*j<=e; j++)
+        vecNum[i*j]++;
+    
     vector<int> vecMinNum(e+1, -1);
     vecMinNum[e]=e;
     long long iCurMaxCnt = vecNum[e];
@@ -25,9 +23,7 @@ vector<int> solution(int e, vector<int> starts) {
         }
     }
     
-    for(int i=0; i<starts.size(); i++){
-        answer.push_back(vecMinNum[starts[i]]);
-    }
+    for(int i=0; i<starts.size(); i++) answer.push_back(vecMinNum[starts[i]]);
     
     
     return answer;
