@@ -23,7 +23,7 @@ int solution(int distance, vector<int> rocks, int n) {
     vecDists.push_back(distance - iPrevV);
     
     int lv = *min_element(vecDists.begin(), vecDists.end()) -1;
-    int rv = distance +1;
+    int rv = distance+1;
     while(lv<rv){
         int mid = (lv+rv)/2;
         
@@ -39,14 +39,8 @@ int solution(int distance, vector<int> rocks, int n) {
             }
         }
         
-        //cout << mid << " " << iCnt << endl;
-        
-        if (iCnt>n){
-            rv = mid;
-        }
-        else{
-            lv = mid+1;
-        }
+        if (iCnt>n) rv = mid;
+        else        lv = mid+1;
     }
     
     answer = lv-1;
