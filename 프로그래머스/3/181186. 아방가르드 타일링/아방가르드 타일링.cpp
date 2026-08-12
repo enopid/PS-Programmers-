@@ -26,27 +26,22 @@ using namespace std;
 int solution(int n) {
     int answer = 0;
     const long long IDIVISOR =  1'000'000'007;
-    vector<long long> vecDP (max(n+1, 4), 0);
-    vector<long long> vecAcc(max(n+1, 4), 0);
-    vecDP [0] = 1;
-    vecDP [1] = 1;
-    vecDP [2] = 3;
-    vecDP [3] = 10;
-    vecAcc[0] = 1;
-    vecAcc[1] = 1;
-    vecAcc[2] = 3;
-    vecAcc[3] = 11;
-    for(int i=4; i<n+1; i++){
-        vecDP[i]+=vecDP[i-1];
-        vecDP[i]+=vecDP[i-3];
+    vector<long long> vecDP (n+1, 0);
+    vector<long long> vecAcc(n+1, 0);
+    vecDP [0] = vecAcc[0] = 1;
+    
+    for(int i=1; i<n+1; i++){
+        if (i>=1) vecDP[i]+=vecDP[i-1];
+        if (i>=3) vecDP[i]+=vecDP[i-3];
         
-        vecDP[i]+=vecAcc[i-4]*2LL;
-        vecDP[i]+=vecAcc[i-3]*4LL;
-        vecDP[i]+=vecAcc[i-2]*2LL;
+        if (i>=4) vecDP[i]+=vecAcc[i-4]*2LL;
+        if (i>=3) vecDP[i]+=vecAcc[i-3]*4LL;
+        if (i>=2) vecDP[i]+=vecAcc[i-2]*2LL;
         
         vecDP[i]%=IDIVISOR;
         
-        vecAcc[i] = vecAcc[i-3] + vecDP[i];
+        vecAcc[i] = vecDP[i];
+        if (i>=3) vecAcc[i] += vecAcc[i-3];
         vecAcc[i] %= IDIVISOR;
     }
     
