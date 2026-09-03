@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define USE_DECREASE_KEY 1
+#define USE_DECREASE_KEY 0
 
 template<typename T, typename Comp>
 class MyPriorityQueue {
